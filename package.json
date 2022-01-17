@@ -23,11 +23,11 @@
   "type": "module",
   "exports": {
     "require": "./dist/index.cjs",
-    "default": "./dist/index.modern.js"
+    "default": "./dist/index.modern.mjs"
   },
   "main": "./dist/index.cjs",
   "unpkg": "./dist/index.umd.js",
-  "module": "./dist/index.module.js",
+  "module": "./dist/index.module.mjs",
   "source": "src/index.ts",
   "scripts": {
     "build": "microbundle",
@@ -41,7 +41,7 @@
     "prepublishOnly": "yarn run clean && yarn test && yarn run build",
     "prettier": "prettier --list-different .",
     "prettier:fix": "prettier --write .",
-    "test": "nyc ava",
+    "test": "yarn run build && nyc ava",
     "posttest": "yarn run docs",
     "example-build:svelte": "cd examples/svelte && yarn install && yarn run build && cd ../..",
     "example-build:react": "cd examples/react && yarn install && yarn run build && cd ../.."

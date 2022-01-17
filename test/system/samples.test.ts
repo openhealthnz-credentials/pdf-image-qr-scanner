@@ -17,8 +17,8 @@ import test from 'ava';
 // 	// expect(scanFile(file)).resolves.toBe("Hello");
 // 	t.is(await scanFile(file), 'Hello');
 // });
+import * as moduleExports from '../../dist/index.cjs';
 
-test('scanFile Exported', async (t) => {
-	const module_exports = await import('../../dist/index.modern.js');
-	t.is(typeof module_exports.scanFile, 'function');
+test('scanFile Exported', (t) => {
+	t.is(typeof moduleExports.scanFile, 'function');
 });

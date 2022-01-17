@@ -22,7 +22,6 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn version --new-version ${{ steps.get_version.outputs.version-without-v }} --no-git-tag-version
       - run: yarn build
-      - run: yarn test
       - name: Release on NPM
         uses: JS-DevTools/npm-publish@v1
         with:

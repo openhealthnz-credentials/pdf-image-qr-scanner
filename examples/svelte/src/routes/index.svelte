@@ -3,9 +3,6 @@
   import ResultModal from '$lib/ResultModal.svelte'
   import { scanFile } from "@openhealthnz-credentials/pdf-image-qr-scanner";
 
-  // Temporary, till AWS Lambda's are implemented
-
-
   async function scanFiles(uploadEvent: Event) {
     let inputElement = uploadEvent.target as HTMLInputElement;
 
