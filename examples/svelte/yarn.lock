@@ -56,6 +56,14 @@
     "@sveltejs/adapter-netlify" "1.0.0-next.38"
     "@sveltejs/adapter-vercel" "1.0.0-next.36"
 
+"@sveltejs/adapter-cloudflare-workers@^1.0.0-next.29":
+  version "1.0.0-next.29"
+  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-cloudflare-workers/-/adapter-cloudflare-workers-1.0.0-next.29.tgz#cc579f4fc9768fb90309fa3504ed3494828f7ad7"
+  integrity sha512-/hNC1j/dujB+qwIM2c8/H30ZXL8l6Zysdsuk+clrsmohqPLsZKKTrpa+aLWbrsrMQTeaUe9yTVM0t8t52ACjyA==
+  dependencies:
+    "@iarna/toml" "^2.2.5"
+    esbuild "^0.13.15"
+
 "@sveltejs/adapter-cloudflare@1.0.0-next.7":
   version "1.0.0-next.7"
   resolved "https://registry.yarnpkg.com/@sveltejs/adapter-cloudflare/-/adapter-cloudflare-1.0.0-next.7.tgz#db5ce6df3d139eeaf6d3c5decc502bf1eed08082"

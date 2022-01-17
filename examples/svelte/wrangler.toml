@@ -1,0 +1,16 @@
+name = "svelte-pdf-image-scanner"
+zone_id = 'a3d1d9be9df771a0330588ed6b567b3f'
+usage_model = ''
+compatibility_flags = []
+workers_dev = true
+site = {bucket = "./build",entry-point = "./workers-site"}
+compatibility_date = "2022-01-17"
+
+type = "javascript"
+
+[build]
+# Assume it's already been built. You can make this "npm run build" to ensure a build before publishing
+command = ""
+
+[build.upload]
+format = "service-worker"
