@@ -4,7 +4,6 @@
   import { scanFile } from "@openhealthnz-credentials/pdf-image-qr-scanner";
 
   // Temporary, till AWS Lambda's are implemented
-  const API_URL = 'https://apc-reader-api.host.qrl.nz/'
 
 
   async function scanFiles(uploadEvent: Event) {
@@ -15,15 +14,13 @@
       // Reset it, so it can be re-run with the same file
       inputElement.value = '';
 
-      let formData = new FormData()
-      formData.append('data', uploadedFile)
       showResultModal(scanFile(uploadedFile))
     }
   }
 
   // Modal to show PDF results
   const { open } = getContext('simple-modal')
-  const showResultModal = (data) => {
+  const showResultModal = (data: Promise<string | null>) => {
     open(ResultModal, { message: data })
   }
 </script>
@@ -38,7 +35,7 @@
         type="file"
         id="file"
         name="file"
-        accept=".pdf"
+        accept=".pdf,.png,.jpg,.jpeg"
         on:change={(e) => {
           console.log(e)
           scanFiles(e)

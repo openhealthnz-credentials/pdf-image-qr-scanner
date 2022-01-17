@@ -1,106 +1,67 @@
 <script lang="ts">
-  import { BarLoader } from 'svelte-loading-spinners'
+	import { BarLoader } from "svelte-loading-spinners";
 
-  export let message: Promise<Response>
+	export let message: Promise<string | null>;
 
-  let api_result:
-    | {
-        details: ParsedApcCert | null
-        status: string
-      }
-    | {
-        error: string
-      }
-    | null = null
-  message
-    .then((response) => response.json())
-    .then((json) => {
-      api_result = json
-    })
+	let api_result: string | null | undefined;
+	message.then((json) => {
+		api_result = json;
+	});
 
-  interface ParsedApcCert {
-    registrationNumber: string
-    hpiCpnID: string
-    fullName: string
-    issueDate: Date
-    expiryDate: Date
-    practiceScope: string
-    conditions: string | null
-  }
+	let textArea: HTMLTextAreaElement;
 </script>
 
 <div class="container">
-  {#if api_result !== null}
-    {#if 'error' in api_result}
-      <div class="error-message">
-        {api_result.error}
-      </div>
-    {:else if api_result.details !== null}
-      <table>
-        <tr>
-          <th> key </th>
-          <th> value </th>
-        </tr>
-        {#each Object.keys(api_result.details) as key}
-          <tr>
-            <td>{key}</td>
-            <td>{api_result.details[key]}</td>
-          </tr>
-        {/each}
-      </table>
-    {:else}
-      <div class="error-message">
-        Certificate did not match any known Physioboard APC certificates. Make sure you
-        upload the original APC certificate that was sent to you electronically.
-      </div>
-    {/if}
-  {:else}
-    <!-- Still Loading -->
-    <div class="loading-wrapper">
-      <BarLoader color="#5dbb65" duration="1.1s" />
-    </div>
-  {/if}
+	{#if typeof api_result !== "undefined"}
+		{#if api_result === null}
+			<div class="error-message">Could not find QR Code</div>
+		{:else if api_result}
+			<div class="resultBox">
+				<div class="header">Result:</div>
+				<div class="contents">{api_result}</div>
+				
+			</div>
+
+		{/if}
+	{:else}
+		<!-- Still Loading -->
+		<div class="loading-wrapper">
+			<BarLoader color="#5dbb65" duration="1.1s" />
+		</div>
+	{/if}
 </div>
 
 <style lang="scss">
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 
-    table {
-      border-spacing: 0;
-      $table-border-color: rgb(58, 58, 58);
+		.resultBox {
+			width: 80%;
+			word-wrap: break-word;
+			resize: vertical;
+			overflow: hidden;
+			overflow-y: auto;
+			.header {
+				font-size: 1.5em;
+				font-weight: bold;
+			}
+			.contents {
+				font-size: 0.95em;
+				background: #efefef;
+				color: #121212;
+				font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
 
-      tr {
-        th {
-          text-align: left;
-          background-color: #efefef;
-        }
-        th,
-        td {
-          padding: 5px;
-          border-top: 1px solid $table-border-color;
-        }
-        &:nth-child(odd) {
-          background-color: rgb(245, 245, 245);
-        }
+			}
+		}
+		.error-message {
+			padding: 1rem;
+		}
 
-        td:nth-child(even) {
-          text-transform: capitalize;
-        }
-      }
-      border-bottom: 1px solid $table-border-color;
-      border-left: 1px solid $table-border-color;
-      border-right: 1px solid $table-border-color;
-    }
-    .error-message {
-      padding: 1rem;
-    }
-
-    .loading-wrapper {
-      margin: 2rem 1rem;
-    }
-  }
+		.loading-wrapper {
+			margin: 2rem 1rem;
+		}
+	}
 </style>

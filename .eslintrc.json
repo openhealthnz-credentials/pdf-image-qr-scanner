@@ -1,13 +1,22 @@
 {
-	"extends": ["@ericcrosson/eslint-config"],
-	"parserOptions": {
-		"sourceType": "module",
-		"ecmaVersion": 2018,
-		"project": "./tsconfig.json"
-	},
-	"rules": {
-		"indent": ["error", "tab"]
-	},
-	"ignorePatterns": [".yarn/**/*"],
-	"parser": "@typescript-eslint/parser"
+  "extends": [
+    "@ericcrosson/eslint-config"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "indent": [
+      "error",
+      "tab"
+    ],
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-use-before-define": "off"
+  },
+  "ignorePatterns": [
+    ".yarn/**/*"
+  ],
+  "parser": "@typescript-eslint/parser"
 }

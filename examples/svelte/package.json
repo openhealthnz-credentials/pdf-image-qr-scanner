@@ -14,6 +14,7 @@
     "@fontsource/fira-sans": "^4.5.0"
   },
   "devDependencies": {
+    "@openhealthnz-credentials/pdf-image-qr-scanner": "file:../../",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/adapter-static": "^1.0.0-next.26",
     "@sveltejs/kit": "next",
@@ -26,8 +27,5 @@
     "svelte-simple-modal": "^1.2.0",
     "tslib": "^2.3.1",
     "typescript": "^4.4.3"
-  },
-  "resolutions": {
-    "@openhealthnz-credentials/pdf-image-qr-scanner": "portal:/home/fallstop/Documents/projects/pdf-image-qr-scanner"
   }
 }

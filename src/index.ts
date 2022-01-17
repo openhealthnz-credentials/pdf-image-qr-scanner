@@ -4,8 +4,9 @@
  */
 
 import jsQR from 'jsqr';
-import { GlobalWorkerOptions, getDocument } from 'pdfjs-dist/legacy/build/pdf.js';
-import * as pdfjsWorker from 'pdfjs-dist/legacy/build/pdf.worker.entry';
+import { getDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist';
+import type { PDFDocumentProxy } from 'pdfjs-dist';
+GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsVersion}/pdf.worker.min.js`;
 
 /**
  * Scan PDF file and return QR code data.
@@ -37,8 +38,8 @@ export async function scanFile(FileHandle: File): Promise<string | null> {
  * @return {string?} QR code data.
  */
 
-async function renderPDF(pdfTypedArray) {
-	let qrResult = null;
+async function renderPDF(pdfTypedArray: PDFDocumentProxy): Promise<string | null> {
+	let qrResult: string | null = null;
 	for (let pageToRender = 1; pageToRender <= pdfTypedArray.numPages; pageToRender++) {
 		const page = await pdfTypedArray.getPage(pageToRender);
 
@@ -117,7 +118,7 @@ async function renderImage(imageBlob: Blob): Promise<string | null> {
  * @return {string?} QR code data.
  */
 
-function extractQRCode(canvas): string | null {
+function extractQRCode(canvas: HTMLCanvasElement): string | null {
 	const ctx = canvas.getContext('2d');
 	const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 	const qrData = jsQR(imageData.data, canvas.width, canvas.height, {

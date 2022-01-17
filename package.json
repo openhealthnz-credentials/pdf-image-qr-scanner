@@ -20,6 +20,7 @@
   },
   "license": "UNLICENSED",
   "author": "Jasper Miller-Waugh <contact@jmw.nz> (https://github.com/fallstop)",
+  "type": "module",
   "exports": {
     "require": "./dist/index.cjs",
     "default": "./dist/index.modern.js"
@@ -96,5 +97,9 @@
       "--loader=ts-node/esm/transpile-only"
     ]
   },
-  "packageManager": "yarn@3.1.1"
+  "publishConfig": {
+    "main": "dist/index.js",
+    "source": "src/index.ts"
+  },
+  "packageManager": "yarn@1.22.17"
 }
