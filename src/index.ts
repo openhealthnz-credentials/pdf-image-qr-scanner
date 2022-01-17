@@ -1,11 +1,13 @@
 /**
  * pdf-image-qr-scanner
  * Library to scan user-uploaded PDF's or images locally and reliably for QR codes using jsQR.
+ * @since 0.0.0
  */
 
 import jsQR from 'jsqr';
-import { getDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist';
+import pdfLib from 'pdfjs-dist';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
+const { getDocument, GlobalWorkerOptions, version: pdfjsVersion } = pdfLib;
 GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsVersion}/pdf.worker.min.js`;
 
 /**
@@ -13,6 +15,7 @@ GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/$
  *
  * @param {File} FileHandle - File handle of the PDF/Image file to scan.
  * @returns {Promise<string?>} QR Code Data.
+ * @since 0.0.0
  */
 
 export async function scanFile(FileHandle: File): Promise<string | null> {
@@ -34,8 +37,9 @@ export async function scanFile(FileHandle: File): Promise<string | null> {
 
 /**
  * Render PDF to canvas, and scans the QR code using the Canvas data.
- * @param {Uint8Array} pdfData PDF data to be scanned.
+ * @param {PDFDocumentProxy} pdfData PDF data to be scanned.
  * @return {string?} QR code data.
+ * @since 0.0.0
  */
 
 async function renderPDF(pdfTypedArray: PDFDocumentProxy): Promise<string | null> {
@@ -75,6 +79,7 @@ async function renderPDF(pdfTypedArray: PDFDocumentProxy): Promise<string | null
  * Needed to make it compatible with Async/Await.
  * @param {Blob} imageBlob
  * @returns {Promise<Image>}
+ * @since 0.0.0
  */
 
 async function generateImageObject(imageBlob: Blob): Promise<HTMLImageElement> {
@@ -90,6 +95,7 @@ async function generateImageObject(imageBlob: Blob): Promise<HTMLImageElement> {
  * Takes image file, creates Image, then renders it on a canvas, and finally extracts the QRCode data
  * @param {Blob} imageBlob
  * @return {string?} QR code data.
+ * @since 0.0.0
  */
 async function renderImage(imageBlob: Blob): Promise<string | null> {
 	const image = await generateImageObject(imageBlob);
@@ -116,6 +122,7 @@ async function renderImage(imageBlob: Blob): Promise<string | null> {
  * Extracts QR code from canvas.
  * @param {HTMLCanvasElement} canvas Canvas element to extract QR code from.
  * @return {string?} QR code data.
+ * @since 0.0.0
  */
 
 function extractQRCode(canvas: HTMLCanvasElement): string | null {

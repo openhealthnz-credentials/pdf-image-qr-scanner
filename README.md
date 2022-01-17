@@ -3,10 +3,9 @@
 [![License][]](LICENSE)
 [![Build Status]](https://github.com/openhealthnz-credentials/pdf-image-qr-scanner/actions/workflows/ci.yml)
 [![NPM Package]](https://npmjs.org/package/@openhealthnz-credentials/pdf-image-qr-scanner)
-[![Code Coverage]](https://codecov.io/gh/openhealthnz-credentials/pdf-image-qr-scanner)
 [![semantic-release]](https://github.com/semantic-release/semantic-release)
 
-[license]: https://img.shields.io/badge/UNLICENSED-blue.svg
+[license]: https://img.shields.io/badge/MIT-blue.svg
 [build status]: https://github.com/openhealthnz-credentials/pdf-image-qr-scanner/actions/workflows/ci.yml/badge.svg
 [npm package]: https://img.shields.io/npm/v/@openhealthnz-credentials/pdf-image-qr-scanner.svg
 [code coverage]: https://codecov.io/gh/openhealthnz-credentials/pdf-image-qr-scanner/branch/master/graph/badge.svg
@@ -16,21 +15,46 @@
 
 ## Install
 
-```shell
-npm install @openhealthnz-credentials/pdf-image-qr-scanner
+```bash
+npm install @openhealthnz-credentials/pdf-image-qr-scanner # or
+yarn add @openhealthnz-credentials/pdf-image-qr-scanner
 ```
 
 ## Use
 
 ```typescript
-import { pdfImageQrScanner } from "@openhealthnz-credentials/pdf-image-qr-scanner";
-// TODO: describe usage
+import { scanFile } from "@openhealthnz-credentials/pdf-image-qr-scanner";
+...
+try {
+    // selectedFile: File (https://developer.mozilla.org/en-US/docs/Web/API/File)
+    const qrCode = await scanFile(selectedFile);
+    // It returns null if no QR code is found
+    console.log(qrCode || "No QR code found");
+} catch (e) {
+    // Example Error Handling
+    if (e?.name === "InvalidPDFException") {
+        console.log("Invalid PDF");
+    } else if (e instanceof Event) {
+        console.log("Invalid Image");
+    } else {
+        console.log("Unknown error:", e);
+    }
+}
+
 ```
 
-## Related
+Additional examples available in the the [examples](./examples/) folder.
+ - [Svelte Web Demo](https://pdf-image-qr-scanner.pages.dev): [source code](./examples/svelte)
+ - React Web Demo: [source code](./examples/react)
 
-TODO
+## TODO:
+ - Implement AVA tests with browser polyfills.
 
-## Acknowledgments
-
-TODO
+<h2 align="center">
+	Supported By
+</h2>
+<p align="center">
+	<a href="https://www.provida.nz/">
+		<img width="250" src="./ProvidaKeaLogo.png"></img>
+	</a>
+</p>

@@ -38,15 +38,16 @@
     "lint": "eslint --ext ts . package.json",
     "lint-staged": "lint-staged",
     "lint:fix": "eslint --ext ts --fix . package.json",
-    "prepublishOnly": "npm run clean && npm test && npm run build",
+    "prepublishOnly": "yarn run clean && yarn test && yarn run build",
     "prettier": "prettier --list-different .",
     "prettier:fix": "prettier --write .",
-    "test": "ava",
-    "posttest": "yarn run docs"
+    "test": "nyc ava",
+    "posttest": "yarn run docs",
+    "example-build:svelte": "cd examples/svelte && yarn install && yarn run build && cd ../..",
+    "example-build:react": "cd examples/react && yarn install && yarn run build && cd ../.."
   },
   "pre-commit": "lint-staged",
   "dependencies": {
-    "cross-blob": "^2.0.1",
     "jsqr": "^1.4.0",
     "pdfjs-dist": "^2.12.313"
   },
@@ -94,12 +95,13 @@
       "test/**/*.test.ts"
     ],
     "nodeArguments": [
-      "--loader=ts-node/esm/transpile-only"
+      "--loader=ts-node/esm"
     ]
   },
   "publishConfig": {
     "main": "dist/index.js",
-    "source": "src/index.ts"
+    "source": "src/index.ts",
+    "access": "public"
   },
   "packageManager": "yarn@1.22.17"
 }
