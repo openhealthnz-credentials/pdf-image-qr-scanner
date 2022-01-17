@@ -2,6 +2,7 @@
   "name": "demo-site",
   "version": "0.0.1",
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "build": "svelte-kit build",
     "check": "svelte-check --tsconfig ./tsconfig.json",

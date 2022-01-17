@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/openhealthnz-credentials/pdf-image-qr-scanner.git"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "Jasper Miller-Waugh <contact@jmw.nz> (https://github.com/fallstop)",
   "type": "module",
   "exports": {
