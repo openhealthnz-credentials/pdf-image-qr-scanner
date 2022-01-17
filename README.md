@@ -44,17 +44,8 @@ try {
 ```
 
 Additional examples available in the the [examples](./examples/) folder.
- - [Svelte Web Demo](https://pdf-image-qr-scanner.pages.dev): [source code](./examples/svelte)
- - React Web Demo: [source code](./examples/react)
+ - [Svelte Web Demo](https://svelte-pdf-image-scanner.fallstop.workers.dev/): [source code](./examples/svelte)
+ - [React Web Demo](https://react-pdf-image-qr-scanner.pages.dev/): [source code](./examples/react)
 
 ## TODO:
  - Implement AVA tests with browser polyfills.
-
-<h2 align="center">
-	Supported By
-</h2>
-<p align="center">
-	<a href="https://www.provida.nz/">
-		<img width="250" src="./ProvidaKeaLogo.png"></img>
-	</a>
-</p>
