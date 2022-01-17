@@ -26,7 +26,7 @@
 </script>
 
 <div class="primary-container">
-  <h1>Physioboard APC Reader</h1>
+  <h1>PDF/Image QR Scanner</h1>
   <!-- File Input  -->
   <div class="form-group">
     <label for="file" class="file-uploader">
