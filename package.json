@@ -43,8 +43,8 @@
     "prettier:fix": "prettier --write .",
     "test": "yarn run build && nyc ava",
     "posttest": "yarn run docs",
-    "example-build:svelte": "cd examples/svelte && yarn install && yarn run build && cd ../..",
-    "example-build:react": "cd examples/react && yarn install && yarn run build && cd ../.."
+    "example-build:svelte": "yarn install && yarn build && cd examples/svelte && yarn install && yarn run build && cd ../..",
+    "example-build:react": "yarn install && yarn build && cd examples/react && yarn install && yarn run build && cd ../.."
   },
   "pre-commit": "lint-staged",
   "dependencies": {
