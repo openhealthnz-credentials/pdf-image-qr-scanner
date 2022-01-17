@@ -1,0 +1,13 @@
+{
+	"extends": ["@ericcrosson/eslint-config"],
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": 2018,
+		"project": "./tsconfig.json"
+	},
+	"rules": {
+		"indent": ["error", "tab"]
+	},
+	"ignorePatterns": [".yarn/**/*"],
+	"parser": "@typescript-eslint/parser"
+}

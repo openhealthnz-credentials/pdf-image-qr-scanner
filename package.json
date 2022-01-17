@@ -1,0 +1,100 @@
+{
+  "name": "@openhealthnz-credentials/pdf-image-qr-scanner",
+  "version": "0.0.0-semantically-released",
+  "description": "Library to scan user-uploaded PDF's or images locally and reliably for QR codes using jsQR.",
+  "keywords": [
+    "typescript",
+    "nz",
+    "apc",
+    "qr",
+    "pdf",
+    "image"
+  ],
+  "homepage": "https://github.com/openhealthnz-credentials/pdf-image-qr-scanner",
+  "bugs": {
+    "url": "https://github.com/openhealthnz-credentials/pdf-image-qr-scanner/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openhealthnz-credentials/pdf-image-qr-scanner.git"
+  },
+  "license": "UNLICENSED",
+  "author": "Jasper Miller-Waugh <contact@jmw.nz> (https://github.com/fallstop)",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
+  },
+  "main": "./dist/index.cjs",
+  "unpkg": "./dist/index.umd.js",
+  "module": "./dist/index.module.js",
+  "source": "src/index.ts",
+  "scripts": {
+    "build": "microbundle",
+    "build:watch": "microbundle --watch",
+    "clean": "rimraf --no-glob dist",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "docs": "docs-ts",
+    "lint": "eslint --ext ts . package.json",
+    "lint-staged": "lint-staged",
+    "lint:fix": "eslint --ext ts --fix . package.json",
+    "prepublishOnly": "npm run clean && npm test && npm run build",
+    "prettier": "prettier --list-different .",
+    "prettier:fix": "prettier --write .",
+    "test": "ava",
+    "posttest": "yarn run docs"
+  },
+  "pre-commit": "lint-staged",
+  "dependencies": {
+    "cross-blob": "^2.0.1",
+    "jsqr": "^1.4.0",
+    "pdfjs-dist": "^2.12.313"
+  },
+  "devDependencies": {
+    "@ericcrosson/eslint-config": "^3.0.0",
+    "@ericcrosson/prettier-config": "^1.0.0",
+    "@types/jest": "^27.4.0",
+    "@types/web": "^0.0.48",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "ava": "^4.0.1",
+    "browser-env": "^3.3.0",
+    "codecov": "^3.8.1",
+    "docs-ts": "^0.6.10",
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-ava": "^13.2.0",
+    "eslint-plugin-fp-ts": "^0.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-json-format": "^2.0.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-security": "^1.4.0",
+    "lint-staged": "^12.1.7",
+    "microbundle": "^0.14.2",
+    "node-fetch": "^2",
+    "nyc": "^15.1.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "2.5.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.1.3",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "ava": {
+    "extensions": {
+      "ts": "module"
+    },
+    "files": [
+      "!dist/**/*.d.ts",
+      "test/**/*.test.ts"
+    ],
+    "nodeArguments": [
+      "--loader=ts-node/esm/transpile-only"
+    ]
+  },
+  "packageManager": "yarn@3.1.1"
+}
